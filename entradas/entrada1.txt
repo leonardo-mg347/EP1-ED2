@@ -1,0 +1,34 @@
+1
+I 1658 Cab
+I 28 Sougvinhon
+I 30 Hagstdv
+I 1800 Juahsdu
+I 2000 Alibaba
+I 592 Lkasjd
+I 2543 Kaidh
+I 50 Iuahdy
+I 20 Loasjsuxhd
+I 10 Caberneu
+I 25 SHudhfb
+I 200 Lragdt
+I 90 Franbsb
+I 1700 Plaisjdsc
+B 28 
+B 2543
+B 1658
+C 5
+C 50
+C 500
+C 2543
+C 3000
+C 1658
+C 2000
+N 0 100
+N 3 100
+N 6 100
+N 0 1658
+N 3 1658
+N 6 1658
+N 0 2000
+N 3 2000
+N 6 2000
