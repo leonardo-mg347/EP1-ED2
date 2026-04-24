@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-#include <cassert>
+#include <assert.h>
 
 class EstruturaDeDados{
 public:

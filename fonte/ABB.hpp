@@ -20,6 +20,15 @@ private:
                 this->esquerda  = NULL;
             }
 
+            ~Node(){
+                if(direita){
+                    delete direita;
+                }
+                if(esquerda){
+                    delete esquerda;
+                }
+            }
+
             void muda(int chave, std::string nome){
                 this->chave = chave;
                 this->nome = nome;

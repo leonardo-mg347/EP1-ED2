@@ -1,6 +1,7 @@
 #include "estrutura.hpp"
 #include "util.hpp"
 #include "ABB.hpp"
+#include "RBTree.hpp"
 
 int main(){
 
@@ -15,6 +16,10 @@ int main(){
     {
     case 1:{
         estrutura = new ABB;
+        break;
+    }
+    case 2:{
+        estrutura = new RBTree<int, std::string>;
         break;
     }
     default:{
@@ -33,13 +38,6 @@ int main(){
         //lendo o comando recebido
         info              = leComando(comando);
         int numero        = transformaNum(info[1]);
-/*
-    std::cout << "FUNCAO LIDA: " << info[0] << std::endl;
-    std::cout << "PREÇO STRING LIDO: " << info[1] << std::endl;
-    std::cout << "PREÇO NUMÉRICO LIDO: " << numero << std::endl;
-    std::cout << "NOME LIDO: " << info[2] << std::endl;
-
-*/
         
 
         //executa o comando
