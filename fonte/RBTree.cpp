@@ -19,10 +19,10 @@ int RBTree<int, std::string>::conta(int limite){
 
 template<>
 std::string RBTree<int, std::string>:: nesimo(int n, int limite){
-    int valorDoNesimo = limite;
+    int valorDoNesimo;
     for(int i = 0; i <= n; i++){
-        valorDoNesimo = root->find_greater(root, valorDoNesimo);
+        valorDoNesimo = root->find_greater(root, limite);
+        limite = valorDoNesimo - 1;
     }
-    std::cout << "Valor do n-ésimo: " << valorDoNesimo << std::endl;
     return search(valorDoNesimo);
 }

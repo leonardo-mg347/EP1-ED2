@@ -113,14 +113,18 @@ public:
 
   static int find_greater(RBNode<K,V>* noh, K limite){
     if(noh->key == limite) return noh->key;
-    else if(noh->key > limite){
-      return find_greater(noh->left, limite);
+    if(noh->key > limite){
+      if(noh->left) return find_greater(noh->left, limite);
+      else return -1;
     }
-    else if(noh->key < limite && noh->right){
-        if(noh->right->key)
-        return find_greater(noh->right, limite);
+    if(noh->key < limite){
+      if(noh->right){
+        int valor = find_greater(noh->right, limite);
+        if( valor == -1) return noh->key;
+        else return valor;
+      }
+      else return noh->key;
     }
-    return noh->key;
   }
 };
 
