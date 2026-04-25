@@ -7,13 +7,13 @@
 
 class EstruturaDeDados{
 public:
-    virtual void insere(int preco, const std::string& nome) =0;
+    virtual void insere(int preco, const std::string& nome) = 0;
 
-    virtual std::string busca(int preco) =0;
+    virtual std::string busca(int preco) = 0;
 
-    virtual int conta(int limite) =0;
+    virtual int conta(int limite) = 0;
 
-    virtual std::string nesimo(int n, int limite) =0;
+    virtual std::string nesimo(int n, int limite) = 0;
 
     virtual ~EstruturaDeDados() {};
 

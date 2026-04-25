@@ -2,6 +2,7 @@
 #include "util.hpp"
 #include "ABB.hpp"
 #include "RBTree.hpp"
+#include "treap.hpp"
 
 int main(){
 
@@ -20,6 +21,10 @@ int main(){
     }
     case 2:{
         estrutura = new RBTree<int, std::string>;
+        break;
+    }
+    case 3:{
+        estrutura = new Treap;
         break;
     }
     default:{
@@ -67,5 +72,6 @@ int main(){
                 break;
             }
         }
-    }    
+    }
+        
 }
