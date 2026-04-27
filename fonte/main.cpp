@@ -3,6 +3,7 @@
 #include "ABB.hpp"
 #include "RBTree.hpp"
 #include "treap.hpp"
+#include "splay.hpp"
 
 int main(){
 
@@ -25,6 +26,10 @@ int main(){
     }
     case 3:{
         estrutura = new Treap;
+        break;
+    }
+    case 4:{
+        estrutura = new Splaytree;
         break;
     }
     default:{

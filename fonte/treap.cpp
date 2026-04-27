@@ -3,11 +3,10 @@
 
 //--------------------TNODE::------------------------------------------------------
 
-Tnode* Tnode::insert(Tnode* noh, int c, std::string n, int p){
-    if(noh == 0){
-        noh = new Tnode(c, n , p);
-        return noh;
-    }
+Tnode* Tnode::insert(Tnode* noh, int c, std::string n, int p)
+{
+    if(noh == 0) return new Tnode(c, n , p);
+
     else if(c < noh->chave){
         noh->esquerda = insert(noh->esquerda, c, n, p);
     }
@@ -27,14 +26,16 @@ Tnode* Tnode::insert(Tnode* noh, int c, std::string n, int p){
     return noh;
 }
 
-std::string Tnode::search(Tnode* noh, int preco){
+std::string Tnode::search(Tnode* noh, int preco)
+{
     if(noh->chave == preco) return noh->nome;
     else if(noh->chave > preco) return search(noh->esquerda, preco);
     else if(noh->chave < preco) return search(noh->direita, preco);
     return "Não encontrado";
 }
 
-void Tnode::count(Tnode* noh, int limite, int* contador){
+void Tnode::count(Tnode* noh, int limite, int* contador)
+{
     if(noh != 0){
         if(noh->chave == limite){
             (*contador)++;
@@ -48,7 +49,8 @@ void Tnode::count(Tnode* noh, int limite, int* contador){
     return;
 }
 
-int Tnode::find_greater(Tnode* noh,int limite){
+int Tnode::find_greater(Tnode* noh,int limite)
+{
     if (noh == nullptr)       return -1;
     if (noh->chave == limite) return noh->chave;
     if(noh->chave < limite){
@@ -59,21 +61,24 @@ int Tnode::find_greater(Tnode* noh,int limite){
     return find_greater(noh->esquerda, limite);
 }
 
-int Tnode::getPriority(Tnode* noh){
+int Tnode::getPriority(Tnode* noh)
+{
     if(noh == 0) return MAX_PRIORITY;
         else return noh->prioridade;
 }
 
-Tnode* Tnode::rotateLeft(Tnode* noh){
+Tnode* Tnode::rotateLeft(Tnode* noh)
+{
     assert(noh->direita);
-        Tnode* aux = noh->direita;
-        noh->direita = aux->esquerda;
-        aux->esquerda= noh;
+    Tnode* aux = noh->direita;
+    noh->direita = aux->esquerda;
+    aux->esquerda= noh;
 
-        return aux;
+    return aux;
 }
 
-Tnode* Tnode::rotateRight(Tnode* noh){
+Tnode* Tnode::rotateRight(Tnode* noh)
+{
     assert(noh->esquerda);
     Tnode* aux = noh->esquerda;
     noh->esquerda = aux->direita;
@@ -85,22 +90,26 @@ Tnode* Tnode::rotateRight(Tnode* noh){
 
 //------------------Treap------------------------------------------------
 
-void Treap::insere(int preco, const std::string& nome){
+void Treap::insere(int preco, const std::string& nome)
+{
     int prioridade = gerarPrioridade();
     raiz = raiz->insert(raiz, preco, nome, prioridade);
 }
 
-std::string Treap::busca(int preco){
+std::string Treap::busca(int preco)
+{
     return raiz->search(raiz, preco);
 }
 
-int Treap:: conta(int limite){
+int Treap:: conta(int limite)
+{
     int contador = 0;
     raiz->count(raiz, limite, &contador);
     return contador;
 }
 
-std::string Treap::nesimo(int n, int limite){
+std::string Treap::nesimo(int n, int limite)
+{
     int valorDoNesimo;
     for(int i = 0; i <= n; i++){
         valorDoNesimo = Tnode::find_greater(this->raiz, limite);
@@ -109,7 +118,8 @@ std::string Treap::nesimo(int n, int limite){
     return Tnode::search(this->raiz, valorDoNesimo);
 }
 
-int Treap::gerarPrioridade(){
+int Treap::gerarPrioridade()
+{
     std::random_device rd;
 
     std::mt19937 gen(rd());

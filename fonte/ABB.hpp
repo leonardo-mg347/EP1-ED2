@@ -10,14 +10,20 @@ private:
     class Node{
         public:
             int chave;           //preço do vinho
+            int rank;            //tamanho da subárvore enraizada no nó
+            int prof;            //profundidade do nó
             std::string nome;    //nome do vinho
             Node* direita;       //filho da direita
             Node* esquerda;      //filho da esquerda
-            Node(int chave, std::string nome){
+
+
+            Node(int chave, std::string nome,int prof, int rank){
                 this->chave     = chave;
                 this->nome      = nome;
-                this->direita   = NULL;
-                this->esquerda  = NULL;
+                this->prof      = prof;
+                this->rank      = rank;
+                this->direita   = nullptr;
+                this->esquerda  = nullptr;
             }
 
             ~Node(){
@@ -29,27 +35,14 @@ private:
                 }
             }
 
-            void muda(int chave, std::string nome){
-                this->chave = chave;
-                this->nome = nome;
-            }
-
-            int compara(int preco){
-               if(preco < this->chave) return -1;
-               else return 0; 
-            }
-
-            void show(){
-                std::cout << "Chave: " << this->chave <<
-                "\nNome: " << this->nome << std::endl;
+            int getRank(){
+                return this->rank;
             }
     };
     Node*   raiz;
-    int     tamanho;
 public:
     arvoreBinariaDeBusca(): EstruturaDeDados(){
-        this->raiz    = new Node(-1, "Indefinido");
-        this->tamanho = 0;
+        this->raiz    = nullptr;
         std::cout << "\nÁrvore binária de busca.\n\n";
     };
 
