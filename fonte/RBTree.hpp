@@ -66,7 +66,7 @@ class RBNode {
   public:
   static V search(RBNode<K, V> *c, K k) {
     if (!c)
-    return V();
+    return "Não encontrado";
     
     if (k == c->key)
     return c->val;

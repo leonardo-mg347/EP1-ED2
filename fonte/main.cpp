@@ -9,8 +9,6 @@ int main(){
 
     //definindo o tipo de estrutura que será usada.
     int tipo = perguntaTipo();
-    std::cout << "\nTIPO:" << tipo << std::endl; 
-    
 
     //criando a estrutura vazia.
     EstruturaDeDados* estrutura;
@@ -43,7 +41,6 @@ int main(){
     while(!(std::cin.eof() && comando != "exit")){ 
         //recebendo um comando
         comando = recebeComando();
-        std::cout << "\n\n" << comando << std::endl;
 
         //lendo o comando recebido
         info              = leComando(comando);

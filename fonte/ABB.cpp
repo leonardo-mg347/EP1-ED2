@@ -65,6 +65,8 @@ std::string ABB::busca(int preco){
     while(aux->chave != preco){
         if(aux->chave < preco) aux = aux->direita;
         else aux = aux->esquerda;
+
+        if(!aux) return "Não encontrado";
     }
     return aux->nome;
 }
@@ -122,7 +124,7 @@ std::string ABB::nesimo(int n, int limite){
         }
         else{
             if(aux->esquerda) aux = aux->esquerda;
-            else return "Não encontrado";
+            else return "Nenhum";
         }
     }
     return aux->nome;

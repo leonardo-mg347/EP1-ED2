@@ -1,39 +1,97 @@
 1
-I 1658 Cab
-I 28 Sougvinhon
-I 30 Hagstdv
-I 1800 Juahsdu
-I 2000 Alibaba
-I 592 Lkasjd
-I 2543 Kaidh
-I 50 Iuahdy
-I 20 Loasjsuxhd
-I 10 Caberneu
-I 25 SHudhfb
-I 200 Lragdt
-I 90 Franbsb
-I 1700 Plaisjdsc
-B 28 
-B 2543
-B 1658
-B 592
+I 150 Cabernet
+I 120 Merlot
+I 180 Malbec
+I 140 Syrah
+I 200 PinotNoir
+I 110 Chardonnay
+I 95 Sauvignon
+I 85 Riesling
+I 70 Rosé
+I 250 Espumante
+I 160 Tannat
+I 130 Tempranillo
+I 145 Sangiovese
+I 300 Nebbiolo
+I 155 Carmenere
+I 190 PetitVerdot
+I 75 Malvasia
+I 210 Prosecco
+I 500 Bordeaux
+I 175 Chianti
+I 450 Porto
+I 320 Sherry
+I 280 Marsala
+I 350 Madeira
+I 65 Moscato
+I 165 Zinfandel
+I 135 Grenache
+I 115 Viognier
+I 105 CheninBlanc
+I 125 Albariño
+I 118 Vermentino
+I 142 Gavi
+I 98 Soave
+I 185 Valpolicella
+I 600 Barolo
+I 550 Barbaresco
+I 700 Amarone
+I 220 Rioja
+I 195 Douro
+I 88 Dão
+I 112 Alentejo
+I 148 Primitivo
+I 138 Montepulciano
+I 55 Lambrusco
+I 78 Garnacha
+I 650 Brunello
+I 480 Gevrey
+I 420 Meursault
+I 380 Chablis
+I 270 Sancerre
+B 350
+B 70
+B 175
+B 155
+B 110
+B 130
+B 105
+B 125
+B 142
+B 280
+B 65
+B 150
+B 95
+B 320
+B 112
+B 999
 B 10
-B 25
-C 5
-C 50
-C 500
-C 2543
-C 3000
-C 1658
-C 2000
-N 0 5
+B 50
+B 750
+B 1
 N 0 100
+N 1 100
 N 3 100
-N 6 100
-N 0 1658
-N 3 1658
-N 6 1658
-N 0 2000
-N 3 2000
-N 6 2000
+N 5 100
+N 10 100
+N 0 200
+N 1 200
+N 3 200
+N 5 200
+N 10 200
+N 0 500
+N 1 500
+N 3 500
+N 5 500
+N 10 500
+N 0 1000
+N 1 1000
+N 3 1000
+N 5 1000
+N 10 1000
+N 0 50
+N 1 50
+N 3 50
+N 5 50
+N 10 50
 V

@@ -13,8 +13,9 @@ int perguntaTipo(){
 
 std::string recebeComando(){
     std::string comando;
-    //std::cout << "Digite um comando: ";
+    std::cout << "Digite um comando: ";
     std::getline(std::cin >> std::ws, comando);
+    std::cout << "\n" << std::endl;
     return comando;
 }
 
@@ -56,7 +57,7 @@ std::string* leComando(std::string comando){
     atual = comando[indice];
 
     
-    while(atual != ' ' && atual != 0 && atual != 13){
+    while(atual != 0 && atual != 13){
         nome.push_back(atual);
         indice++;
         atual = comando[indice];

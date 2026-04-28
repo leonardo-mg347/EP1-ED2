@@ -13,7 +13,6 @@ Tnode* Tnode::insert(Tnode* noh, int c, std::string n, int p)
     else if(c > noh->chave){
         noh->direita = insert(noh->direita, c, n, p);
     }
-    //implementar o else(caso em que a chave que eu quero inserir é igual a chave do nó que eu apliquei a função).
 
     //Após inserir o nó com base na chave, fazemos rotações de acordo com as prioridades.
     if(getPriority(noh->esquerda) < noh->prioridade){
@@ -27,10 +26,11 @@ Tnode* Tnode::insert(Tnode* noh, int c, std::string n, int p)
 }
 
 std::string Tnode::search(Tnode* noh, int preco)
-{
-    if(noh->chave == preco) return noh->nome;
-    else if(noh->chave > preco) return search(noh->esquerda, preco);
-    else if(noh->chave < preco) return search(noh->direita, preco);
+{   if(noh){
+        if(noh->chave == preco) return noh->nome;
+        else if(noh->chave > preco) return search(noh->esquerda, preco);
+        else if(noh->chave < preco) return search(noh->direita, preco);
+    }
     return "Não encontrado";
 }
 

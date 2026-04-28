@@ -19,7 +19,7 @@ public:
     {
         this->chave = chave;
         this->nome  = nome;
-        this->rank  = 0;
+        this->rank  = 1;
         esquerda = direita = pai = 0;
     }
 
@@ -28,7 +28,7 @@ public:
         this->chave = chave;
         this->nome  = nome;
         this->pai   = pai;
-        this->rank  = 0;
+        this->rank  = 1;
         esquerda = direita = 0;
     }
 
@@ -36,7 +36,6 @@ public:
     {
         if(esquerda) delete esquerda;
         if(direita)  delete direita;
-        if(pai)      delete pai;
     }
 
     static Snode* Splay(Snode* noh);

@@ -108,23 +108,26 @@ void Splaytree::insere(int preco, const std::string& nome)
 
     Snode* aux = raiz;
     while(true){
-        aux->rank++;
         if(aux->chave < preco){
             if(aux->direita == nullptr){
                 aux->direita = new Snode(aux, preco, nome);
+                aux->rank++;
                 aux= aux->direita;
                 break;
             }
+            aux->rank++;
             aux = aux->direita;
         }
-        if(aux->chave > preco){
+        else if(aux->chave > preco){
             if(aux->esquerda == nullptr){ 
                 aux->esquerda = new Snode(aux, preco, nome);
+                aux->rank++;
                 aux = aux->esquerda;
                 break;
             }
+            aux->rank++;
             aux = aux->esquerda;
-        } 
+        }else return;
     }
     raiz = Snode::Splay(aux);
     raiz->rank = 1 + Snode::Rank(raiz->esquerda) + Snode::Rank(raiz->direita);
@@ -136,6 +139,7 @@ std::string Splaytree::busca(int preco){
         if(aux->chave == preco) return aux->nome;
         else if(aux->chave < preco) aux = aux->direita;
         else if(aux->chave > preco) aux = aux->esquerda;
+        if(!aux) return "Não encontrado";
     };
     Snode::Splay(aux);
     return aux->nome;
@@ -145,7 +149,7 @@ int Splaytree::conta(int limite)
 {
     int contador = 0;
     Snode* aux   = raiz;
-    Snode* aux2  = aux; //melhor candidato até o momento
+    Snode* aux2  = nullptr; //melhor candidato até o momento
 
     //encontrar o maior nó que seja menor ou igual ao limite
     while(aux != nullptr){
@@ -160,7 +164,7 @@ int Splaytree::conta(int limite)
             aux = aux->direita;
         }
     }
-    if(aux2 == nullptr) return 0;
+    if(aux == nullptr && aux2 == nullptr) return 0;
     //o maior está no aux2
     Snode::Splay(aux2);
     raiz = aux2;
