@@ -11,30 +11,31 @@ template<typename K, typename V> class RBTree;
 template<typename K, typename V>
 class RBNode {
   friend class RBTree<K, V>;
-private:
+  private:
   K key;
   V val;
   RBNode<K, V> *left, *right;
   bool color;
-
+  
   RBNode(K k, V v) {
     key = k;
     val = v;
     left = right = 0;
     color = RED;
   }
-
+  
   ~RBNode() {
     if (left)
-      delete left;
+    delete left;
     if (right)
-      delete right;
+    delete right;
   }
+
 
   static bool isRed(RBNode<K, V> *c) {
     return c && c->color == RED;
   }
-
+  
   RBNode<K, V> *rotateLeft() {
     assert(right);
     RBNode<K, V> *d = right;
@@ -43,7 +44,7 @@ private:
     std::swap(color, d->color);
     return d;
   }
-
+  
   RBNode<K, V> *rotateRight() {
     assert(left);
     RBNode<K, V> *d = left;
@@ -52,7 +53,7 @@ private:
     std::swap(color, d->color);
     return d;
   }
-
+  
   void flipColors() {
     assert(color == BLACK);
     assert(isRed(left));
@@ -61,41 +62,41 @@ private:
     left->color = BLACK;
     right->color = BLACK;
   }
-
-public:
+  
+  public:
   static V search(RBNode<K, V> *c, K k) {
     if (!c)
-      return V(); // poderiamos usar std::optional
-
+    return V();
+    
     if (k == c->key)
-      return c->val;
+    return c->val;
     if (k < c->key)
-      return search(c->left, k);
+    return search(c->left, k);
     return search(c->right, k);
   }
-
+  
   static RBNode<K, V> *insert(RBNode<K, V> *c, K k, V v) {
     if (!c)
-      return new RBNode<K, V>(k, v);
-
+    return new RBNode<K, V>(k, v);
+    
     if (k == c->key)
-      c->val = v;
+    c->val = v;
     else if (k < c->key)
-      c->left = insert(c->left, k, v);
+    c->left = insert(c->left, k, v);
     else if (k > c->key)
-      c->right = insert(c->right, k, v);
-
-
+    c->right = insert(c->right, k, v);
+    
+    
     if (isRed(c->right) && !isRed(c->left))
-      c = c->rotateLeft();
+    c = c->rotateLeft();
     if (isRed(c->left) && isRed(c->left->left))
-      c = c->rotateRight();
+    c = c->rotateRight();
     if (isRed(c->left) && isRed(c->right))
-      c->flipColors();
-
+    c->flipColors();
+    
     return c;
   }
-
+  
   static void count(RBNode<K,V>* noh, K limite, int* cont){
     if     (!noh) return;
     if     (noh->key > limite) count(noh->left, limite, cont);
@@ -110,7 +111,7 @@ public:
     }
     return;
   }
-
+  
   static int find_greater(RBNode<K,V>* noh, K limite){
     if(noh->key == limite) return noh->key;
     if(noh->key > limite){
@@ -126,24 +127,43 @@ public:
       else return noh->key;
     }
   }
+  
+  void v(RBNode* aux,int min, int max, int &contador, int prof){
+    if (aux == nullptr) return;
+    assert(aux->key > min && aux->key < max); 
+    if(aux->right) assert(aux->right->color == BLACK);
+    if(aux->color == BLACK && aux->left){
+      if(aux->left->color == RED)
+      {
+        if(aux->left->left) assert(aux->left->left->color == BLACK);
+      }
+    }
+
+    contador += prof;
+    
+    v(aux->left, min,aux->key, contador, prof+1);
+    v(aux->right,aux->key, max, contador, prof+1);
+    
+    return;
+  }
 };
 
 template<typename K, typename V>
 class RBTree: public EstruturaDeDados{
-private:
+  private:
   RBNode<K, V> *root;
-
-public:
+  
+  public:
   RBTree(): EstruturaDeDados(){
     root = 0;
     std::cout<< "Árvore Rubro-Negra Esquerdista" << std::endl;
   }
-
+  
   ~RBTree() {
     if (root)
-      delete root;
+    delete root;
   }
-
+  
   V search(K k) {
     return RBNode<K, V>::search(root, k);
   }
@@ -161,5 +181,6 @@ public:
 
   std::string nesimo(int n, int limite) override;
 
+  void funcaoV() override;
 };
 #endif

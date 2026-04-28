@@ -49,7 +49,6 @@ int main(){
         info              = leComando(comando);
         int numero        = transformaNum(info[1]);
         
-
         //executa o comando
         switch(info[0][0])
         {
@@ -74,6 +73,7 @@ int main(){
                 break;
             }
             case 'V':{
+                estrutura->funcaoV();
                 break;
             }
         }

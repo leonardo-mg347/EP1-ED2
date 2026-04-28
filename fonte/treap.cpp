@@ -87,6 +87,21 @@ Tnode* Tnode::rotateRight(Tnode* noh)
     return aux;
 }
 
+void Tnode::V(Tnode* aux, int min, int max, int p_min, int &contador, int prof){
+    if (aux == nullptr) return;
+
+    assert(aux->chave > min && aux->chave < max); 
+    if(aux->direita) assert(aux->prioridade < aux->direita->prioridade);
+    if(aux->esquerda)assert(aux->prioridade < aux->esquerda->prioridade);
+
+    contador += prof;
+    
+    V(aux->esquerda, min,aux->chave, aux->prioridade, contador, prof + 1);
+    V(aux->direita,aux->chave, max,aux->prioridade,contador, prof + 1);
+
+    return;    
+}
+
 
 //------------------Treap------------------------------------------------
 
@@ -128,3 +143,12 @@ int Treap::gerarPrioridade()
 
     return dis(gen);
 }
+
+void Treap::funcaoV(){
+    int  contador = 0;
+    int  prof     = 0;  
+
+    raiz->V(raiz, 0, 1000000,raiz->prioridade, contador, prof);
+
+    std::cout << "Soma de todas as profundidades da árvore: " << contador <<  std::endl;
+};

@@ -7,6 +7,15 @@ I 2000 Alibaba
 I 592 Lkasjd
 I 2543 Kaidh
 I 50 Iuahdy
+1
+I 1658 Cab
+I 28 Sougvinhon
+I 30 Hagstdv
+I 1800 Juahsdu
+I 2000 Alibaba
+I 592 Lkasjd
+I 2543 Kaidh
+I 50 Iuahdy
 I 20 Loasjsuxhd
 I 10 Caberneu
 I 25 SHudhfb
@@ -19,4 +28,21 @@ B 1658
 B 592
 B 10
 B 25
-C 100
+C 5
+C 50
+C 500
+C 2543
+C 3000
+C 1658
+C 2000
+N 0 5
+N 0 100
+N 3 100
+N 6 100
+N 0 1658
+N 3 1658
+N 6 1658
+N 0 2000
+N 3 2000
+N 6 2000
+V

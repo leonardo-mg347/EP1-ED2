@@ -8,6 +8,7 @@ class Snode{
     friend class Splaytree;
 private:
     int chave;
+    int rank;
     std::string nome;
     Snode* esquerda;
     Snode* direita;
@@ -18,6 +19,7 @@ public:
     {
         this->chave = chave;
         this->nome  = nome;
+        this->rank  = 0;
         esquerda = direita = pai = 0;
     }
 
@@ -26,6 +28,7 @@ public:
         this->chave = chave;
         this->nome  = nome;
         this->pai   = pai;
+        this->rank  = 0;
         esquerda = direita = 0;
     }
 
@@ -42,7 +45,22 @@ public:
 
     static void Zig(Snode* noh);
 
-    static void count(Snode* noh, int limite, int* contador);
+    /**
+     * @brief mostra o rank de um nó
+     * @param nó consultado
+     * @return rank do nó
+     */
+    static int Rank(Snode* noh);
+
+    /**
+     * @brief verifica se o nó cumpre as invariantes e soma a profundidade do nó em um endereço
+     * @param aux nó a ser verificado
+     * @param min range mínimo para o nó
+     * @param max range máximo para o nó
+     * @param contador referencia para o inteiro que guarda a soma das profundidades
+     * @param prof profundidade do nó atual 
+     */
+    static void V(Snode* aux,int min, int max, int &contador, int prof);
     
 };
 
@@ -64,6 +82,8 @@ public:
 
     int conta(int limite) override;
 
-    std::string nesimo(int n, int limite) { return "Não implementado";};
+    std::string nesimo(int n, int limite) override;
+
+    void funcaoV() override;
 };
 #endif

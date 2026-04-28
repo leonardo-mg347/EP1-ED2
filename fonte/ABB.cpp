@@ -1,4 +1,25 @@
 #include "ABB.hpp"
+// ----------------- Node -----------------------------------------
+
+int Node::getRank(){
+    int rank = this->rank;
+    return rank;
+}
+
+void Node::V(Node* aux, int min, int max, int &contador){
+    if (aux == nullptr) return;
+
+    assert(aux->chave > min && aux->chave < max); 
+
+    contador += aux->prof;
+    
+    V(aux->esquerda, min,aux->chave, contador);
+    V(aux->direita,aux->chave, max, contador);
+
+    return;
+}
+
+//-----------ABB ---------------------------------------------------
 
 void ABB::insere(int preco, const std::string &nome){
     int  prof = 0;
@@ -32,11 +53,9 @@ void ABB::insere(int preco, const std::string &nome){
                 prof++;
                 aux->esquerda = new Node(preco, nome, prof, rank);
                 break;
-            }
+            }  
         }
-    }
-    if(raiz->esquerda != nullptr){
-        std::cout << "Nó inserido.\n Preço: "<< raiz->esquerda->chave << "\nNome: " << raiz->esquerda->nome << "\nRank: " << raiz->esquerda->rank << "\nprofundidade: " << raiz->esquerda->prof << std::endl;
+        prof++;
     }
     return;
 }
@@ -54,10 +73,6 @@ int ABB::conta(int limite){
     int   contador = 0;
     Node* aux = raiz;
     
-    //achar uma sub-árvore com raíz menor ou igual ao limite
-    while(aux != nullptr && aux->chave > limite){
-       aux = aux->esquerda;
-    }
     if(aux == nullptr) return contador; 
     
     //Se a raíz é menor ou igual ao limite, toda a sub-árvore da esquerda é menor
@@ -78,96 +93,44 @@ int ABB::conta(int limite){
 }
 
 std::string ABB::nesimo(int n, int limite){
-    int   qtd_dir;
-    int   contados     = 0;
-    int   falta_contar = conta(limite);
-    std::cout << falta_contar <<std::endl;
-    Node* aux          = raiz;
+    int qtd_dir;//quantidade de candidatos na sub-árvore da direita
+    int qtd_esq;
+    int total = conta(limite);
+    int mn = 0;//quantidade de nós com chave maior que o n-ésimo que estamos procurando 
+    Node* aux  = raiz;
 
-    if(falta_contar == 0) return "Não encontrado";
+    while(aux){
+        int chave = aux->chave;
+        if(chave <= limite){ //achou o n = 0
+            if(aux->esquerda) qtd_esq = aux->esquerda->getRank();
+            else qtd_esq = 0;
 
-    while(true){
-        if(aux->chave > limite) aux = aux->esquerda;
+            qtd_dir = total - (1+ qtd_esq);
+            int decisao = mn + qtd_dir;
+            if(decisao == n) break;
+            else if(decisao > n){
+                total -= (1+qtd_esq);
+                if(aux->direita) aux = aux->direita;
+                else return "Erro";
+            } 
+            else if(decisao < n){
+                mn+= (qtd_dir +1);
+                total-= (1+ qtd_dir);
+                if(aux->esquerda) aux = aux->esquerda;
+                else return "Erro";
+            }
+        }
         else{
-            if(aux->esquerda){
-                qtd_dir = falta_contar - (1 + aux->esquerda->getRank());
-                std::cout << qtd_dir << std::endl;
-                if(n - contados== qtd_dir) break;
-                else if(n - contados > qtd_dir){
-                    falta_contar -= (1 + qtd_dir);
-                    contados += (1+qtd_dir);
-                    aux = aux->esquerda;
-                }    
-                else if(n - contados < qtd_dir){
-                    falta_contar -= (1+ aux->esquerda->getRank()) ;
-                    contados +=  (1+ aux->esquerda->getRank());
-                    aux = aux->direita;
-                }        
-            }
-            else{
-                qtd_dir = falta_contar - 1;
-                if(qtd_dir > 0){
-                    aux = aux->direita;
-                    falta_contar--;
-                    contados++;
-                }    
-                else break; //qtd_dir = 0;
-            }
+            if(aux->esquerda) aux = aux->esquerda;
+            else return "Não encontrado";
         }
     }
-
-
-
-
-/*     Node*        raizTemporaria = this->raiz;
-    Node*        aux            = raizTemporaria;
-    int          precocmp       = limite;
-    bool         achou          = false;
-    Node*        raizTemporaria2;
-    std::string  nome;
-    
-    //achando a maior sub-árvore com raíz menor ou igual ao limite
-    while(raizTemporaria->chave > limite){
-        raizTemporaria  = raizTemporaria->esquerda;
-        aux        = raizTemporaria;
-    }
-    //std::cout << "chave da raiz: " << aux->chave << std::endl; 
-    for(int i = 0; i <= n ; i++){
-        //achando o nome com a maior chave da árvore e menor ou igual que precocmp
-        while(raizTemporaria->chave > precocmp){
-        raizTemporaria  = raizTemporaria->esquerda;
-        aux        = raizTemporaria;
-        }
-        while(!achou){
-            //std::cout << aux->chave << std::endl;
-            if(aux->chave == precocmp){
-                nome           = aux->nome;
-                achou          = true;
-                precocmp       = aux->chave - 1;
-            }else if(aux->chave < precocmp){
-                if(aux->direita != nullptr){
-                    if(aux->direita->chave > precocmp){
-                        raizTemporaria2 = aux;
-                    }
-                    aux = aux->direita;  
-                }else{//Se não há filho da direita, o maior é o aux
-                    precocmp = (aux->chave - 1);
-                    nome     = aux->nome;   
-                    achou    = true;
-                }
-                    
-            }else{//aux->chave > precocomp
-                if(aux->esquerda != nullptr && aux->esquerda->chave <= precocmp){
-                    aux = aux->esquerda;
-                }else{
-                    nome     = raizTemporaria2->nome;
-                    achou    = true;
-                    precocmp = raizTemporaria2->chave - 1;
-                }
-            }
-    }
-    achou    = false;
-    aux = raizTemporaria;
-    } */
     return aux->nome;
+}
+
+void ABB::funcaoV(){
+    int  contador = 0;
+    raiz->V(raiz, 0, 1000000, contador);
+
+    std::cout << "Soma de todas as profundidades da árvore: " << contador <<  std::endl;
 }

@@ -36,8 +36,15 @@ std::string* leComando(std::string comando){
         }
     }
     
-    if(valido && comando[1] == ' ') funcao = comando[0];
+    if(valido && (comando[1] == ' ' || comando[0] == 'V')) funcao = comando[0];
     else funcao = "invalido";
+    
+    if(comando[1] == 0){
+        info[0] = funcao;
+        info[1] = '0';
+        info[2] = '0';
+        return info;
+    }
 
     while(atual != ' ' && atual != 0 && atual != 13){
         preco.push_back(atual);

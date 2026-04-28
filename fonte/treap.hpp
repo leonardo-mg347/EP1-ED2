@@ -36,6 +36,16 @@ public:
     static Tnode* rotateLeft(Tnode* noh);
 
     static Tnode* rotateRight(Tnode* noh);
+
+    /**
+     * @brief verifica se o nó cumpre as invariantes e soma a profundidade do nó em um endereço
+     * @param aux nó a ser verificado
+     * @param min range mínimo para o nó
+     * @param max range máximo para o nó
+     * @param p_raiz prioridade mínima para manter as invariantes
+     * @param contador referencia para o inteiro que guarda a profundidade 
+     */
+    void V(Tnode* aux,int min, int max,int p_min, int &contador, int prof);
 };
 
 class Treap: public EstruturaDeDados{
@@ -59,5 +69,7 @@ public:
     int conta(int limite) override;
 
     std::string nesimo(int n, int limite) override;
+
+    void funcaoV() override;
 };
 #endif

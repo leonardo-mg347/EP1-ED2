@@ -1,5 +1,5 @@
 #include "RBTree.hpp"
-
+// ------------------ RBTree ------------------
 template<> 
 void RBTree<int, std::string>::insere(int preco, const std::string& nome){
     this->insert(preco, nome);
@@ -25,4 +25,14 @@ std::string RBTree<int, std::string>:: nesimo(int n, int limite){
         limite = valorDoNesimo - 1;
     }
     return search(valorDoNesimo);
+}
+
+template<>
+void RBTree<int, std::string>:: funcaoV(){
+
+    int  contador = 0;
+    int  prof     = 0;
+    root->v(root, 0, 1000000, contador, prof);
+
+    std::cout << "Soma de todas as profundidades da árvore: " << contador <<  std::endl;
 }
